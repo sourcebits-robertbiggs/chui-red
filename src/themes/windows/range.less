@@ -1,0 +1,32 @@
+/* ==============================
+   Range Control
+   =========================== */
+input[type="range"] {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  &::-ms-track {
+  	border-color: @buttonTextColor;
+	}
+
+	&::-ms-ticks-before,
+	::-ms-ticks-after {
+		border-color: yellow !important;
+		background-color: yellow !important;
+		color: yellow !important;
+	}
+
+	&::-ms-thumb {
+		background-color: @appTint;
+		border-color: @appTint;
+	}
+}
+/* Use color attribute for left side of range control */
+input[type=range]::-ms-fill-lower {
+  background-color: lighten(@appTint, 30%);
+}
+/* Use color attribute for right side of range control */
+input[type=range]::-ms-fill-upper {
+  background-color: @buttonTextColor;
+}
