@@ -48,3 +48,9 @@
     display: none;
   }
 }
+
+html[dir=rtl] {
+  & .list.select li::after {
+    float: left;
+  }
+}

@@ -84,3 +84,12 @@
     }
   }
 }
+
+html[dir=rtl] {
+  .popup > div > footer > .button + .button {
+    border-left: none !important;
+  }
+  .popup  footer > .button:first-of-type {
+    border-left: solid 1px @popupButton;
+  }
+}
