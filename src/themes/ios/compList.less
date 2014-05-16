@@ -6,24 +6,19 @@
 }
 
 li.comp {
-  display: -webkit-flex;
-  -webkit-flex-direction: row;
-  -webkit-align-items: stretch;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
+  #flex > .display(flex);
+  #flex > .flex-direction(row);
+  #flex > .align-items(stretch);
+
   padding-bottom: 0;
 
-  & > div {
-    -webkit-box-flex: 1;
+  > div {
+    #flex > .flex(1);
     border-bottom: solid 1px @listBorder;
     padding: 0 0 10px 0;
     margin-left: 0;
 
-    & > h3, & > h4 {
+    > h3, > h4 {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -32,12 +27,12 @@ li.comp {
       margin: 0;        
     }
 
-    & + aside {
+    + aside {
       margin-right: -15px;
     }
   }
 
-  & > aside {
+  > aside {
     display: -webkit-box;
     -webkit-box-pack: center;
     -webkit-box-align: center;
@@ -50,36 +45,36 @@ li.comp {
       -webkit-box-align: start;
     }
 
-    & > label, &> span {
+    > label, &> span {
       display: inline-block;
       margin-left: 6px;
     }
 
-    & > .nav {
+    > .nav {
       display: block;
       .size(12px,12px);
 
       &::after {
-        .pseudoBlock('');
+        .pseudo-block('');
         .size(6px,6px);
-        border-right: solid 2px @appTint;
-        border-top: solid 2px @appTint;
+        border-right: solid 2px @listNavIndicator;
+        border-top: solid 2px @listNavIndicator;
         .transform(rotate(45deg) translate3d(4px,0,0));
       }
     }
 
-    & > .show-detail {
+    > .show-detail {
       display: inline-block;
       margin-bottom: -4px;
 
       &::after {
-        .pseudoBlock('i');
-        .size(20px,22px);
+        .pseudo-block('i');
+        .size(22px,20px);
         border-radius: 20px;
         border: solid 1px @appTint;
         color: @appTint;
         font: bold 14px/0 'Times', serif;
-        .sizing;
+        .box-sizing(border-box);
         padding: 10px 8px;
         float: right;
         margin: 0px 10px 0 0 !important;
@@ -95,7 +90,7 @@ li.comp {
       border-bottom: solid 1px @listBorder;
     }
 
-    & > span.counter, & > span.date-time {
+    > span.counter, & > span.date-time {
       font-weight: normal;
       color: @listDetail;
       font-size: 12pt;
@@ -116,31 +111,32 @@ li.comp {
   }
 }
 
+
 html[dir=rtl] {
   li.comp {
     padding-bottom: 0 !important;
-    & > aside > .nav::after {
+    > aside > .nav::after {
       -webkit-transform: rotate(-135deg);
       transform: rotate(-135deg);
     }
-    & > aside:first-child {
+    > aside:first-child {
       margin-left: 10px;
       margin-right: 0;
     }
-    & > aside:last-child {
+    > aside:last-child {
       padding: 0 10px 0 0;
 
-      & > .nav::after {
+      > .nav::after {
         margin-left: -10px !important;
       }
     }
-    & > aside {
-      & > span.counter, & > span.date-time {
+    > aside {
+      > span.counter, > span.date-time {
         margin-right: 5px;
         margin-left: 0px;
       }
 
-      & > h4 {
+      > h4 {
         padding-bottom: 4px;
       }
     }

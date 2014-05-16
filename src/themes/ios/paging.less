@@ -1,28 +1,35 @@
 /* ==============================
    Segmented Paging Control
    =========================== */
-.segmented.paging > .button {
-  border: none;
-  background: none;
-  color: @appBkColor;
-  .size(40px,40px);
-  position: relative;
-  border-radius: 0 !important;
-  
-  &:hover &.selected {
-    opacity: .5 !important;
-    color: @appBkColor;    
-  }
+.segmented.paging,
+.segmented.paging.vertical {
+  #flex > .flex-direction(row) !important;
 
-  &::before {
-    .pseudoBlock('');
-    .size(35px,35px);
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: 50% 50%;
-    background-color: @appBkColor;
+  > .button {
+    border: none;
+    background: none !important;
+    color: @appTint;
+    .size(40px,40px);
+    .box-sizing(border-box);
+    position: relative;
+    border-radius: 0 !important;
+    
+    .isDesktop &:hover, &.selected {
+      opacity: .5 !important;
+      color: @appTint; 
+      background-color: transparent !important;   
+    }
+
+    &::before {
+      .pseudo-block('');
+      .size(35px,35px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: 50% 50%;
+      background-color: @appBkColor;
+    }
   }
 }
 
@@ -66,7 +73,7 @@ article.paging {
   box-orient: vertical !important;
   direction: column !important;
 
-  & > section {
+  > section {
     position: absolute;
     width: 100%;
     left: 0;
@@ -77,7 +84,7 @@ article.paging {
     padding: 0 0 100px 0 !important;
     overflow-x: hidden;
     overflow-y: scroll;
-    .transition(all, .15s);
+    .transition(all 0.15s ease-out);
   }
 }
 
@@ -107,37 +114,39 @@ article.paging.vertical > section.next {
 }
 
 html[dir=rtl] {
-  & .segmented.paging.horizontal {
+  .segmented.paging.horizontal {
     -webkit-flex-direction: row-reverse;
     flex-direction: row-reverse;
-    & .button:first-child {
+    .button:first-child {
       -webkit-box-ordinal-group: 2;
       -webkit-order: 2;
       order: 2;
+      border: none !important;
     }
 
-    & .button:last-child {
+    .button:last-child {
       -webkit-box-ordinal-group: 1;
       -webkit-order: 1;
       order: 1;
     }
   }
-  & .segmented.paging.horizontal > .button::before {
+  
+  .segmented.paging.horizontal > .button::before {
     top: -2px;
   }
-
-  & article.paging.horizontal > section.previous {
+  
+  article.paging.horizontal > section.previous {
     .transform(translate3d(100%,0,0));
   }
 
-  & article.paging.horizontal > section.current {
+  article.paging.horizontal > section.current {
     .transform(translate3d(0,0,0) scale(1,1));
   }
 
-  & article.paging.horizontal > section.next {
+  article.paging.horizontal > section.next {
     .transform(translate3d(-100%,0,0));
   }
-  & .segmented.paging.horizontal > .button::before {
+  .segmented.paging.horizontal > .button::before {
     -webkit-transform: rotate(180deg);
   }
 }

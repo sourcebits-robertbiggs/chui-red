@@ -3,41 +3,46 @@
    =========================== */
 article {
   position: absolute;
-  top: 52px; right: 0;
-  bottom: 0; left: 0;
-  .transition(all, .15s);
-  .overflowYScroll;
+  top: 52px; 
+  right: 0;
+  bottom: 0; 
+  left: 0;
+  padding-top: 1px;
+  .transition(all .15s ease-out);
+  .overflow-y-scroll;
   -webkit-overflow-scrolling: touch;
-  .flexBlock;
+  #flex > .display(flex);
+  display: -webkit-box;
+  #flex > .flex-direction(column);
+  #flex > .justify-content(center);
+  #flex > .align-items(flex-start);
 }
 /* ==============================
    Article navigation states    
    =========================== */
 .current {
-  .transform(translate3d(0,0,0));
+  .transform(scale3d(1,1,1));
   visibility: visible;
 }
 .next {
-  .transform(translate3d(105%,0,0));
+  .transform(scale3d(0,0,0));
   visibility: hidden;
 }
 .previous {
-  .transform(translate3d(-100%,0,0));
+  .transform(scale3d(0,0,0));
   visibility: hidden;
 }
-
 html[dir=rtl] {
 
-  & .current {
-    .transform(translate3d(0,0,0));
+  .current {
+    .transform(scale3d(1,1,1));
   }
 
-  & .next {
-    .transform(translate3d(-100%,0,0));
+  .next {
+    .transform(scale3d(0,0,0));
   }
 
-  & .previous {
-    .transform(translate3d(105%,0,0));
+  .previous {
+    .transform(scale3d(0,0,0));
   }
-
 }

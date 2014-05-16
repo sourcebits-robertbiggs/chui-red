@@ -5,37 +5,44 @@
   & li {
 
     & > .deletion-indicator {
-      display: -webkit-inline-box;
-      .flexJustify(center, center);
-      .flexAlign(center, center);
-      .deletionIndicator;
+      #flex > .display(inline-flex);
+      #flex > .justify-content(center);
+      #flex > .align-items(center);
+      .deletion-indicator;
       border-radius: 50%;
       .size(20px,20px);
       float: left;
       margin-right: 6px;
-      .transition;
+      .transition(all 0.25s ease-out);
       margin-left: -40px;
       cursor: pointer;
       position: relative;
       z-index: 100;
       &::before {
-        .pseudoBlock('—');
+        .pseudo-block('—');
         font-size: 12pt;
-        margin-top: -1px;
+        margin-top: -2px;
+        padding: 6px 4px;
+        min-width: 20px;
+        text-align:center;
       } 
     }
 
     & > .button.delete {
       float: right;
-      .deleteButton;
+      .delete-button;
       text-align: center;
-      .sizing;
+      .box-sizing(border-box);
       width: 80px;
       position: absolute;
       right: 0;
       top: 0;
-      .flexBlockCentered;
-      .transition;
+      bottom: 0;
+      #flex > .display(flex);
+      #flex > .flex-direction(column);
+      #flex > .justify-content(center);
+      #flex > .align-items(center);
+      .transition(all 0.25s ease-out);
       .transform(translate3d(80px,0,0));
       cursor: pointer;
       font-family: 'HelveticaNeue-Light';
@@ -46,24 +53,26 @@
   &.deletable {
     
     & > li {
-      .transition;
+      .transition(all 0.25s ease-out);
       .transform(translate3d(0,0,0));
 
       &.selected {
+        margin-right: 80px;
+        background-color: @listBkColor;
 
         & h3, & h4, & p {
           position: relative;
           .transform(translate3d(0,0,0));
-          .transition(all, 1s);         
+          .transition(all 0.25s ease-out);         
         }
 
         & > .button.delete {
           .transform(translate3d(80px,0,0));
         }
-      }
 
-      &.selected {
-        .transform(translate3d(-80px,0,0));
+        & > .deletion-indicator {
+          -webkit-transform: rotate(90deg);
+        }
       }
     }
   }
@@ -106,13 +115,38 @@ html[dir=rtl] {
     }
 
     & > .button.delete {
-      -webkit-transform: translate3d(-80px, 0, 0);
+      .transform(translate3d(-80px,0,0));
       left: 0;
       right: auto;
     }
   }
 
-  .list.showIndicators > li {
+  &.deletable.showIndicators > li {
+    margin-right: 0px;
+  }
+  .list.deletable > li {
+    &.selected {
+      margin-right: 0 !important;
+
+      & > .button.delete {
+        .transform(translate3d(0,0,0)) !important;
+      }
+    }
+  & > .button.delete {
+      .transform(translate3d(-80px,0,0)) !important;
+    }
+  }
+
+  .list.showIndicators > li,
+  .list.deletable.showIndicators > li  {
+    &.selected {
+      margin-right: 0;
+
+      & > .button.delete {
+        .transform(translate3d(0,0,0)) !important;
+      }
+    }
+
     & > .deletion-indicator {
       right: 0px !important;
       margin-left: 10px;
@@ -121,14 +155,6 @@ html[dir=rtl] {
     & > .button.delete {
       right: auto;
       left: 0 !important;
-    }
-    &.selected {
-      margin-right: 0;
-      margin-left: 80px;
-
-      & > .button.delete {
-        .transform(translate3d(-80px,0,0));
-      }
     }
   }
 }

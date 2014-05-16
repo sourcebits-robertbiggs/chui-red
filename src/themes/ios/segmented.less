@@ -1,17 +1,12 @@
 /* ==============================
    Segmented Control
    =========================== */
-.segmented {
-  display: -webkit-inline-box;
-  -webkit-box-orient: horizontal;
-  display: -webkit-inline-flex;
-  -webkit-flex-direction: row;
-  .sizing;
-  display: inline-flex;
-  flex-direction: row;
-  .sizing;
+.segmented:not(.paging) {
+  #flex > .display(flex-inline);
+  #flex > .flex-direction(row);
+  .box-sizing(border-box);
   
-  & > .button {
+  > .button {
     border: solid 1px @appTint;
     padding: 4px 15px;
     border-left: none;
@@ -21,8 +16,11 @@
     -webkit-transition: none;
     transition: none;
     font-size: 10pt;
-    .flexBlockCentered;
-    .flex;
+    #flex > .display(flex);
+    #flex > .flex-direction(column);
+    #flex > .justify-content(center);
+    #flex > .align-items(center);
+    #flex > .flex(1) !important;
     text-align: center;
     color: @appTint;
 
@@ -37,7 +35,7 @@
       border-bottom-right-radius: 4px;
     }
 
-    &:hover, &.selected {
+    .isDesktop &:hover, &.selected {
       color: @segmentedButtonSelectedText;
       background-color: @appTint;
       opacity: 1 !important;
@@ -46,12 +44,9 @@
 }
 
 div.horizontal.centered > .segmented {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
+  #flex > .display(flex);
+  #flex > .flex(1);
   margin: 10px 15px;
-  -webkit-flex: 1;
-  flex: 1;
 }
 
 .segmented.align-flush {
@@ -68,7 +63,7 @@ html[dir=rtl] .segmented {
     top: 6px;
   }
 
-  & .button {
+  .button {
 
     &:first-of-type {
       border-left: none;
